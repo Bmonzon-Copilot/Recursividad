@@ -33,6 +33,13 @@ def conta_palabra(palabra,contador=None):
 
     return conta_palabra(palabra[1:],contador)
 
+def potencial(base,exponente):
+    if exponente==0:
+        return 1
+    else:
+        return base*potencial(base,exponente-1)
+
+
 
 def menu():
 
@@ -68,6 +75,15 @@ def menu():
             resultado= conta_palabra(palabra)
             for letra, cantidad in resultado.items():
                 print(f"{letra} = {cantidad}")
+        elif opcion == "5":
+            break
+
+        elif opcion == "6":
+            base=int(input("Ingrese la base: "))
+            expo=int(input("Ingrese exponente"))
+
+            resultado=potencial(base,expo)
+            print("el resultado es: ",resultado)
 
         elif opcion == "7":
             print("Secion Finalizada...")
