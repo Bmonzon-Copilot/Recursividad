@@ -10,6 +10,30 @@ def suma_naturales(n): #caso base
     else:
         return n + suma_naturales(n-1)
 
+def fibonacci(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+def conta_palabra(palabra,contador=None):
+    if contador is None:
+        contador={}
+    if len(palabra)==0:
+        return contador
+
+    letra=palabra[0]
+    if letra.isalpha():
+        if letra in contador:
+            contador[letra]=contador[letra]+1
+        else:
+            contador[letra]=1
+
+    return conta_palabra(palabra[1:],contador)
+
+
 def menu():
 
     while True:
@@ -33,6 +57,18 @@ def menu():
                 print("Ingrese un numero positivo...")
             else:
                 print("La sumatoria es: ",suma_naturales(n))
+        elif opcion == "3":
+            n=int(input("Ingrese una posicion para saber el numero fibonacci: "))
+            if n<0:
+                print("Ingrese un numero positivo")
+            else:
+                print(f"El numero Fibonacci de la posicion {n} es: ",fibonacci(n))
+        elif  opcion == "4":
+            palabra=input("Ingrese una palabra: ")
+            resultado= conta_palabra(palabra)
+            for letra, cantidad in resultado.items():
+                print(f"{letra} = {cantidad}")
+
         elif opcion == "7":
             print("Secion Finalizada...")
             break
